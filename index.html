@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thomas Mihaljevic</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%2345a247'/><stop offset='50%25' stop-color='%23283c86'/><stop offset='100%25' stop-color='%23f15f2a'/></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23g)'/></svg>" type="image/svg+xml">
+
     <style>
         :root {
             /* Theme Colors: Green -> Blue -> Orange */
@@ -85,15 +88,16 @@
             max-width: 600px;
         }
 
-        /* Projects Grid */
+        /* Section Styling */
         .section-title {
-            margin-top: 60px;
+            margin-top: 80px;
             margin-bottom: 30px;
             font-size: 1.5rem;
             border-left: 4px solid #283c86; /* Blue accent */
             padding-left: 15px;
         }
 
+        /* Projects Grid */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -129,74 +133,18 @@
             border-radius: 4px;
         }
 
+        /* About Section */
+        .about-text {
+            font-size: 1.1rem;
+            color: #aeb0b2;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
         /* Footer */
         footer {
             margin-top: 100px;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #555;
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            header { flex-direction: column; gap: 20px; }
-            nav a { margin: 0 10px; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <header>
-            <div class="logo">thomas mihaljevic</div>
-            <nav>
-                <a href="#projects">Projects</a>
-                <a href="#about">About</a>
-                <a href="mailto:thomasmihaljevic27@gmail.com">Contact</a>
-            </nav>
-        </header>
-
-        <section class="hero">
-            <h1>PROFESSIONAL HOMEPAGE</h1>
-            <p class="subtitle">
-                Master of Arts in Economics Candidate.<br>
-                Exploring economics, sports analytics, and policy.
-            </p>
-        </section>
-
-        <h2 class="section-title" id="projects">Selected Work</h2>
-        <div class="grid">
-            
-            <div class="card">
-                <h3>NHL Trade Efficiency Model</h3>
-                <p>Developing a model to evaluate market inefficiencies in player trades using historical data and regression analysis.</p>
-                <span class="tag">R / Stata</span>
-                <span class="tag">Hockey Analytics</span>
-            </div>
-
-            <div class="card">
-                <h3>Policy Analysis: Northern Ontario</h3>
-                <p>Research on population retention strategies and economic development in the Thunder Bay region.</p>
-                <span class="tag">Economics</span>
-                <span class="tag">Policy</span>
-            </div>
-
-            <div class="card">
-                <h3>Statistical Visualization</h3>
-                <p>Custom graphing scripts for dual-axis economic indicators.</p>
-                <span class="tag">Stata</span>
-                <span class="tag">Data Viz</span>
-            </div>
-
-        </div>
-
-        <footer>
-            <p>&copy; 2026 Thomas Mihaljevic. Built with GitHub Pages.</p>
-        </footer>
-    </div>
-
-</body>
-</html>
