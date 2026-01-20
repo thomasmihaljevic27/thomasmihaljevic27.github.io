@@ -147,4 +147,37 @@
                 THOMAS MIHALJEVIC
             </a>
             <nav>
-                <a
+                <a href="/#work">Work</a>
+                <a href="/#manifesto">About</a>
+                <a href="mailto:thomasmihaljevic27@gmail.com">Contact</a>
+            </nav>
+        </header>
+
+        <div class="pdf-controls">
+            <a href="/" class="back-link">← Back to Projects</a>
+            <a href="../Housing_Paper.pdf" class="download-btn" download>Download PDF</a>
+        </div>
+
+        <iframe 
+            src="../Housing_Paper.pdf" 
+            class="pdf-frame" 
+            title="Opinion: To Fix the Housing Crisis">
+        </iframe>
+        
+        <footer>
+            <span style="display: flex; align-items: center; gap: 8px;">
+                Thunder Bay, ON 
+                <img src="https://flagcdn.com/ca.svg" alt="Canada Flag" style="height: 14px;">
+            </span>
+            <span id="last-updated"></span>
+        </footer>
+    </div>
+
+    <script>
+        const date = new Date(document.lastModified);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('last-updated').textContent = "Last updated: " + date.toLocaleDateString('en-CA', options);
+    </script>
+
+</body>
+</html>
