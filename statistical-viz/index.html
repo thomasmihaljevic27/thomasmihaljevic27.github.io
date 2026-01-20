@@ -14,10 +14,14 @@
     <style>
         :root {
             --bg-color: #0b0c10;
+            --surface-color: #1f2833;
             --text-primary: #ffffff;
             --text-secondary: #c5c6c7;
+            --border-color: #333;
             --accent-green: #45a247;
             --accent-blue: #283c86;
+            --accent-orange: #f15f2a;
+            --main-gradient: linear-gradient(90deg, #45a247 0%, #283c86 50%, #f15f2a 100%);
         }
 
         body {
@@ -25,16 +29,71 @@
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Shared Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+            transition: opacity 0.2s;
+        }
+        .logo-link:hover { opacity: 0.8; }
+
+        .logo-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--main-gradient);
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav a:hover { color: #fff; }
+
+        /* Construction Content */
+        .construction-box {
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding-bottom: 80px;
         }
-
-        .container { max-width: 600px; }
 
         .crane {
             font-size: 5rem;
@@ -48,17 +107,8 @@
             50% { transform: translateY(-10px); }
         }
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 16px;
-            font-weight: 800;
-        }
-
-        p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
+        h1 { font-size: 2rem; margin-bottom: 16px; font-weight: 800; }
+        p { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 30px; }
 
         .back-btn {
             display: inline-block;
@@ -70,24 +120,65 @@
             border-radius: 6px;
             transition: all 0.2s;
         }
+        .back-btn:hover { background: var(--accent-green); color: #000; }
 
-        .back-btn:hover {
-            background: var(--accent-green);
-            color: #000;
+        /* Shared Footer */
+        footer {
+            margin-top: auto;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            color: #555;
+            font-size: 0.9rem;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        @media (max-width: 600px) { 
+            header { flex-direction: column; gap: 20px; }
+            footer { flex-direction: column; gap: 15px; } 
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="crane">🏗️</div>
-        <h1>Under Construction</h1>
-        <p>
-            This case study is currently being built. <br>
-            Check back soon for the full analysis and data.
-        </p>
-        <a href="/" class="back-btn">← Return Home</a>
+        <header>
+            <a href="/" class="logo-link">
+                <div class="logo-dot"></div>
+                THOMAS MIHALJEVIC
+            </a>
+            <nav>
+                <a href="/#work">Work</a>
+                <a href="/#manifesto">About</a>
+                <a href="mailto:thomasmihaljevic27@gmail.com">Contact</a>
+            </nav>
+        </header>
+
+        <div class="construction-box">
+            <div class="crane">🏗️</div>
+            <h1>Under Construction</h1>
+            <p>
+                This case study is currently being built. <br>
+                Check back soon for the full analysis and data.
+            </p>
+            <a href="/" class="back-btn">← Return Home</a>
+        </div>
+
+        <footer>
+            <span style="display: flex; align-items: center; gap: 8px;">
+                Thunder Bay, ON 
+                <img src="https://flagcdn.com/ca.svg" alt="Canada Flag" style="height: 14px;">
+            </span>
+            <span id="last-updated"></span>
+        </footer>
     </div>
+
+    <script>
+        const date = new Date(document.lastModified);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('last-updated').textContent = "Last updated: " + date.toLocaleDateString('en-CA', options);
+    </script>
 
 </body>
 </html>
