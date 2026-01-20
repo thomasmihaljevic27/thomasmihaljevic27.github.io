@@ -19,6 +19,7 @@
             --accent-green: #45a247;
             --accent-blue: #283c86;
             --main-gradient: linear-gradient(90deg, #45a247 0%, #283c86 50%, #f15f2a 100%);
+            --border-color: #333;
         }
 
         body {
@@ -26,7 +27,7 @@
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0 20px 20px 20px; /* Adjusted padding for header */
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -41,35 +42,69 @@
             flex-direction: column;
         }
 
-        .back-nav {
-            margin-bottom: 20px;
+        /* --- HEADER STYLES (Copied from Homepage) --- */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
+
+        .logo-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+            transition: opacity 0.2s;
         }
         
-        .back-nav a {
-            color: var(--accent-green);
+        .logo-link:hover { opacity: 0.8; }
+
+        .logo-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--main-gradient);
+        }
+
+        nav a {
+            color: var(--text-secondary);
             text-decoration: none;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.9rem;
+            margin-left: 24px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav a:hover { color: #fff; }
+
+        /* PDF Viewer Styles */
+        .pdf-controls {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
         }
 
         .download-btn {
             background: var(--accent-blue);
             color: white;
+            text-decoration: none;
             padding: 8px 16px;
             border-radius: 4px;
             font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
             transition: opacity 0.2s;
         }
 
         .download-btn:hover { opacity: 0.8; }
 
-        /* The PDF Viewer */
         .pdf-frame {
             width: 100%;
-            flex-grow: 1; /* Fills remaining vertical space */
+            flex-grow: 1;
             min-height: 80vh;
             border: 1px solid #333;
             border-radius: 8px;
@@ -78,19 +113,31 @@
 
         @media (max-width: 600px) {
             .pdf-frame { min-height: 60vh; }
+            header { flex-direction: column; gap: 20px; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <nav class="back-nav">
-            <a href="index.html">← Back to Home</a>
-            <a href="Housing_Paper.pdf" class="download-btn" download>Download PDF</a>
-        </nav>
+        <header>
+            <a href="/" class="logo-link">
+                <div class="logo-dot"></div>
+                THOMAS MIHALJEVIC
+            </a>
+            <nav>
+                <a href="/#work">Work</a>
+                <a href="/#manifesto">About</a>
+                <a href="mailto:thomasmihaljevic27@gmail.com">Contact</a>
+            </nav>
+        </header>
+
+        <div class="pdf-controls">
+            <a href="../Housing_Paper.pdf" class="download-btn" download>Download PDF</a>
+        </div>
 
         <iframe 
-            src="Housing_Paper.pdf" 
+            src="../Housing_Paper.pdf" 
             class="pdf-frame" 
             title="Opinion: To Fix the Housing Crisis">
         </iframe>
