@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housing Crisis & Zoning | Thomas Mihaljevic</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%2345a247'/><stop offset='50%25' stop-color='%23283c86'/><stop offset='100%25' stop-color='%23f15f2a'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/></svg>" type="image/svg+xml">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --text-primary: #ffffff;
+            --text-secondary: #c5c6c7;
+            --accent-green: #45a247;
+            --accent-blue: #283c86;
+            --main-gradient: linear-gradient(90deg, #45a247 0%, #283c86 50%, #f15f2a 100%);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .back-nav {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .back-nav a {
+            color: var(--accent-green);
+            text-decoration: none;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+
+        .download-btn {
+            background: var(--accent-blue);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            transition: opacity 0.2s;
+        }
+
+        .download-btn:hover { opacity: 0.8; }
+
+        /* The PDF Viewer */
+        .pdf-frame {
+            width: 100%;
+            flex-grow: 1; /* Fills remaining vertical space */
+            min-height: 80vh;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #1f2833;
+        }
+
+        @media (max-width: 600px) {
+            .pdf-frame { min-height: 60vh; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="back-nav">
+            <a href="index.html">← Back to Home</a>
+            <a href="Housing_Paper.pdf" class="download-btn" download>Download PDF</a>
+        </nav>
+
+        <iframe 
+            src="Housing_Paper.pdf" 
+            class="pdf-frame" 
+            title="Opinion: To Fix the Housing Crisis">
+        </iframe>
+        
+    </div>
+
+</body>
+</html>
