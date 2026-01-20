@@ -319,11 +319,17 @@
             </p>
         </div>
 
-        <footer>
+<footer>
             <span>Thunder Bay, ON 🇨🇦</span>
-            <span>&copy; 2026</span>
+            <span id="last-updated"></span>
         </footer>
     </div>
+
+    <script>
+        const date = new Date(document.lastModified);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('last-updated').textContent = "Last updated: " + date.toLocaleDateString('en-CA', options);
+    </script>
 
 </body>
 </html>
