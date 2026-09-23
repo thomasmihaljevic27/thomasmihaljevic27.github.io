@@ -15,15 +15,25 @@ Hosted on GitHub Pages at thomasmihaljevic27.github.io / tmihalje.com.
 - `styles.css` — shared, root-level, linked by every page via root-absolute path
 - `paper.js` — shared PDF viewer logic, loaded only by the two paper pages
 - `economic-sanctions/index.html`, `housing-paper/index.html`, `nhl-trade-model/index.html`
-  — project sub-pages
+  — project sub-pages (they mark Research in the nav with `aria-current="page"`)
+- `404.html` — served by GitHub Pages for any missing path
+- `contact/index.html` — redirect stub to `/#contact` only; keeps old links working
 - `favicon.svg`, `favicon.ico`, `apple-touch-icon.png` — shared favicon geometry
+- Every page `<head>` carries canonical, Open Graph (title/description from the page's own
+  `<title>` and meta description) and `theme-color` tags. Keep them in sync when editing those.
+  Canonical host is `https://www.tmihalje.com` (matches CNAME; the apex redirects to www).
 - `Thomas_Mihaljevic_Resume.pdf`, `Sanctions.pdf`, `Housing_Paper.pdf` — served from root,
   linked by CV button / paper pages
 
 ## Design system (do not deviate without explicit sign-off)
 - Palette: `#FAF8F3` paper, `#2A241E` ink, `#2F5D43` pine accent
 - Two-column layout, left label column, no vertical hairline rule
-- No animations. No Fraunces. No bold list-label formatting.
+- No animations. No Fraunces. No bold list-label formatting. For labelled lists use the
+  `.progress` / `.ledger` label-column pattern or `.prose h3` subheads.
+- Pine accent is for links, tags and status labels. Plain text (e.g. job role lines) stays ink.
+- No inline `style=` attributes; add a class in `styles.css`.
+- Phone nav (≤480px) hides Skills and Contact (`hide-sm`, `hide-xs`); the name must stay on
+  one line. Re-check at 320/360px if nav items are added.
 - Recruiter-first hierarchy: Experience before Research
 
 ## How to run locally

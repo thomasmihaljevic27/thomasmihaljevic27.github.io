@@ -8,6 +8,12 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>NHL Trade Market Efficiency Model — Thomas Mihaljevic</title>
 <meta name="description" content="A net-present-value framework that prices NHL players, draft picks, and prospects in one currency, used to test whether front offices trade rationally.">
+<link rel="canonical" href="https://www.tmihalje.com/nhl-trade-model/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.tmihalje.com/nhl-trade-model/">
+<meta property="og:title" content="NHL Trade Market Efficiency Model — Thomas Mihaljevic">
+<meta property="og:description" content="A net-present-value framework that prices NHL players, draft picks, and prospects in one currency, used to test whether front offices trade rationally.">
+<meta name="theme-color" content="#FAF8F3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..500&display=swap" rel="stylesheet">
@@ -21,9 +27,9 @@
     <a class="name" href="/">Thomas Mihaljevic</a>
     <nav>
       <a href="/#experience">Experience</a>
-      <a href="/#research">Research</a>
+      <a href="/#research" aria-current="page">Research</a>
       <a href="/#skills" class="hide-sm">Skills</a>
-      <a href="/#contact">Contact</a>
+      <a href="/#contact" class="hide-xs">Contact</a>
       <a href="/Thomas_Mihaljevic_Resume.pdf" class="cv">CV</a>
     </nav>
   </div>
@@ -98,11 +104,11 @@
       <div class="marker">Data</div>
       <div class="prose">
         <p>Four sources, three of them assembled for this project.</p>
-        <ul>
-          <li><strong>Contracts and trades.</strong> A commercial contract database supplies the terms of every NHL contract, and its trade ledger covers 980 trades from 2018 through 2026, collapsing into 946 distinct trade events.</li>
-          <li><strong>Player production.</strong> Wins above replacement, from the published model maintained by Patrick Bacon at hockeystats.com.</li>
-          <li><strong>Trade-protection clauses.</strong> No-trade and no-movement status is absent from the contract database, so it was scraped from a public salary-cap reference: roughly 1,700 players and 15,261 contract-seasons, at a 97.7 percent hit rate on target players, cross-checked against a second independent source with 93.4 percent agreement and disagreements resolved by hand.</li>
-          <li><strong>A self-built game-level database.</strong> Raw play-by-play and shift data for 11,870 games from 2017-18 through 2025-26, or 427,241 player-game observations, scraped from the NHL's public API.</li>
+        <ul class="ledger">
+          <li><span class="k">Contracts and trades</span><span>A commercial contract database supplies the terms of every NHL contract, and its trade ledger covers 980 trades from 2018 through 2026, collapsing into 946 distinct trade events.</span></li>
+          <li><span class="k">Player production</span><span>Wins above replacement, from the published model maintained by Patrick Bacon at hockeystats.com.</span></li>
+          <li><span class="k">Trade-protection clauses</span><span>No-trade and no-movement status is absent from the contract database, so it was scraped from a public salary-cap reference: roughly 1,700 players and 15,261 contract-seasons, at a 97.7 percent hit rate on target players, cross-checked against a second independent source with 93.4 percent agreement and disagreements resolved by hand.</span></li>
+          <li><span class="k">A self-built game-level database</span><span>Raw play-by-play and shift data for 11,870 games from 2017-18 through 2025-26, or 427,241 player-game observations, scraped from the NHL's public API.</span></li>
         </ul>
         <p>The player model currently prices 2,909 contracts, reproduced independently on two machines.</p>
       </div>
@@ -149,9 +155,12 @@
       <div class="marker">Limitations</div>
       <div class="prose">
         <p>Three are worth stating plainly.</p>
-        <p><strong>Selection.</strong> A trade happens only when two clubs agree, so observed trades are a selected sample and the trades that were never made cannot be observed. This is structural rather than fixable.</p>
-        <p><strong>Structural parameters.</strong> No individual player's own future ever reaches his own valuation, but the comparable bank, the aging pattern, the market rate, and the retirement-risk table are each fitted on the full panel and applied backwards. What crosses the line is a population regularity rather than player-specific information, and it is documented as such.</p>
-        <p><strong>Benchmark coverage.</strong> Agreement between the model and the independent benchmark is strong for forwards and weak for defencemen, a known limit of reading defensive play off shot and shift data.</p>
+        <h3>Selection</h3>
+        <p>A trade happens only when two clubs agree, so observed trades are a selected sample and the trades that were never made cannot be observed. This is structural rather than fixable.</p>
+        <h3>Structural parameters</h3>
+        <p>No individual player's own future ever reaches his own valuation, but the comparable bank, the aging pattern, the market rate, and the retirement-risk table are each fitted on the full panel and applied backwards. What crosses the line is a population regularity rather than player-specific information, and it is documented as such.</p>
+        <h3>Benchmark coverage</h3>
+        <p>Agreement between the model and the independent benchmark is strong for forwards and weak for defencemen, a known limit of reading defensive play off shot and shift data.</p>
       </div>
     </div>
   </section>
