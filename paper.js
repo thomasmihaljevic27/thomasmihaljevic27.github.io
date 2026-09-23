@@ -15,9 +15,12 @@
   // Fail visibly rather than silently: if the CDN is blocked or the file
   // moves, the reader still gets a working download link.
   function fail() {
+    // The status line is detached once the first page renders, so a later
+    // failure (e.g. mid-resize) would otherwise write into nothing. Put it back.
     if (status) {
       status.innerHTML =
         'The inline viewer could not load. <a href="' + url + '">Download the PDF instead.</a>';
+      if (!status.isConnected) { viewer.innerHTML = ''; viewer.appendChild(status); }
     }
   }
 
@@ -27,8 +30,13 @@
     'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
   let pdfDoc = null;
+  // Each render() call takes a ticket. A resize can start a new render while
+  // the previous one is still awaiting pages; the stale loop sees its ticket
+  // is out of date and stops, so pages are never appended twice.
+  let ticket = 0;
 
   async function render() {
+    const mine = ++ticket;
     // Cap at 2x so retina screens stay sharp without rendering enormous
     // canvases on high-DPR phones.
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -38,6 +46,7 @@
 
     for (let n = 1; n <= pdfDoc.numPages; n++) {
       const page = await pdfDoc.getPage(n);
+      if (mine !== ticket) return;
       const unscaled = page.getViewport({ scale: 1 });
       const viewport = page.getViewport({ scale: (width / unscaled.width) * dpr });
 
@@ -74,6 +83,6 @@
     if (!pdfDoc || window.innerWidth === lastWidth) return;
     lastWidth = window.innerWidth;
     clearTimeout(timer);
-    timer = setTimeout(render, 250);
+    timer = setTimeout(function () { render().catch(fail); }, 250);
   });
 })();

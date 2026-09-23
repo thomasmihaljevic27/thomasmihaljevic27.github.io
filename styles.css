@@ -32,6 +32,10 @@ body{
   font-optical-sizing:auto;font-weight:400;
 }
 
+h1,h2,h3{text-wrap:balance}
+p,li,dd{text-wrap:pretty}
+::selection{background:var(--accent-pale);color:var(--ink)}
+
 .wrap{max-width:62rem;margin:0 auto;padding:0 2rem}
 @media (max-width:640px){.wrap{padding:0 1.35rem}}
 
@@ -50,17 +54,32 @@ body{
 .topbar-in{max-width:62rem;margin:0 auto;padding:.85rem 2rem;
   display:flex;align-items:center;justify-content:space-between;gap:1rem}
 .topbar .name{font-family:var(--serif);font-weight:600;font-size:1rem;
-  text-decoration:none;color:var(--ink);letter-spacing:-.005em}
+  text-decoration:none;color:var(--ink);letter-spacing:-.005em;white-space:nowrap}
 .topbar nav{display:flex;align-items:center;gap:1.5rem;
   font-family:var(--label);font-size:.85rem;letter-spacing:.03em}
 .topbar nav a{color:var(--ink-2);text-decoration:none;padding:.2rem 0;border-bottom:1px solid transparent}
 .topbar nav a:hover,.topbar nav a:focus-visible{color:var(--accent);border-bottom-color:var(--accent)}
 .topbar nav a.cv{color:var(--accent);border:1px solid var(--accent);border-radius:2px;padding:.3rem .75rem}
 .topbar nav a.cv:hover,.topbar nav a.cv:focus-visible{background:var(--accent);color:var(--paper)}
+/* sub-pages mark Research with aria-current; a quiet rule, not a new colour */
+.topbar nav a[aria-current]{color:var(--ink);border-bottom-color:var(--rule)}
 @media (max-width:700px){
   .topbar-in{padding:.7rem 1.35rem}
   .topbar nav{gap:.95rem;font-size:.78rem}
   .topbar nav a.hide-sm{display:none}
+}
+/* Phones: the name plus four links won't fit on one line, and a wrapped
+   name doubles the sticky bar's height. Contact is one scroll away. */
+@media (max-width:480px){
+  .topbar-in{padding:.7rem 1rem}
+  .topbar nav{gap:.75rem}
+  .topbar nav a.cv{padding:.25rem .6rem}
+  .topbar nav a.hide-xs{display:none}
+}
+@media (max-width:350px){
+  .topbar-in{padding:.7rem .6rem}
+  .topbar .name{font-size:.9rem}
+  .topbar nav{gap:.5rem}
 }
 
 /* ---------- intro ---------- */
@@ -83,6 +102,8 @@ h1{font-family:var(--serif);font-weight:600;
 
 /* ---------- sections ---------- */
 section{border-top:1px solid var(--rule)}
+/* nav anchors land below the sticky bar instead of under it */
+section[id]{scroll-margin-top:3.9rem}
 .sec{padding:3.2rem 0 3.4rem}
 h2{font-family:var(--serif);font-weight:600;font-size:1.4rem;line-height:1.22;
   letter-spacing:-.012em;margin:0 0 .6rem}
@@ -96,9 +117,10 @@ h2{font-family:var(--serif);font-weight:600;font-size:1.4rem;line-height:1.22;
 .job h3{font-family:var(--serif);font-weight:600;font-size:1.1rem;
   line-height:1.3;margin:0;letter-spacing:-.006em}
 .job .when{font-family:var(--label);font-size:.78rem;letter-spacing:.06em;
-  color:var(--ink-3);white-space:nowrap}
+  color:var(--ink-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* ink, not accent: pine is kept for things you can click */
 .job .role{font-family:var(--label);font-size:.85rem;letter-spacing:.04em;
-  color:var(--accent);margin:0 0 .6rem}
+  color:var(--ink-2);margin:0 0 .6rem}
 .job ul{margin:0;padding-left:1.15rem}
 .job li{margin-bottom:.4rem;color:var(--ink-2);font-size:.98rem;line-height:1.5}
 .job li:last-child{margin-bottom:0}
@@ -120,6 +142,7 @@ h2{font-family:var(--serif);font-weight:600;font-size:1.4rem;line-height:1.22;
 .links a{color:var(--accent);text-decoration:none;
   border-bottom:1px solid rgba(47,93,67,.35);padding-bottom:1px}
 .links a:hover,.links a:focus-visible{border-bottom-color:var(--accent)}
+.links.after-list{margin-top:1.8rem}
 
 /* skills */
 .skills{display:grid;gap:1.7rem;max-width:44rem}
@@ -134,7 +157,7 @@ h2{font-family:var(--serif);font-weight:600;font-size:1.4rem;line-height:1.22;
 .hist li:first-child{border-top:none;padding-top:.2rem}
 @media (max-width:560px){.hist li{grid-template-columns:1fr;gap:.2rem}}
 .hist .yr{font-family:var(--label);font-size:.78rem;letter-spacing:.06em;
-  color:var(--ink-3);padding-top:.3rem}
+  color:var(--ink-3);padding-top:.3rem;font-variant-numeric:tabular-nums}
 .hist .what{margin:0;font-weight:500}
 .hist .what span{display:block;color:var(--ink-2);font-size:.95rem;font-weight:400}
 
@@ -165,6 +188,8 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   letter-spacing:-.018em;margin:0 0 .9rem;max-width:26ch}
 .paper-head .standfirst{max-width:var(--measure);color:var(--ink-2);
   font-size:1.05rem;margin:0 0 1.6rem}
+/* the header already draws the rule; the first section shouldn't add a second */
+.paper-head + section{border-top:none}
 
 /* small metadata table under the title */
 .paper-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
@@ -173,11 +198,12 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 @media (max-width:560px){.paper-meta{grid-template-columns:1fr 1fr}}
 .paper-meta dt{font-family:var(--label);font-size:.68rem;letter-spacing:.13em;
   text-transform:uppercase;color:var(--ink-3);margin-bottom:.15rem}
-.paper-meta dd{margin:0;font-size:.95rem;line-height:1.4}
+.paper-meta dd{margin:0;font-size:.95rem;line-height:1.4;font-variant-numeric:tabular-nums}
 
 /* PDF viewer */
+/* same max-width as #viewer so the caption lines up with the page it labels */
 .viewer-bar{display:flex;align-items:baseline;justify-content:space-between;
-  gap:1rem;flex-wrap:wrap;padding:1.6rem 0 1rem;
+  gap:1rem;flex-wrap:wrap;padding:1.6rem 0 1rem;max-width:52rem;margin:0 auto;
   font-family:var(--label);font-size:.8rem;color:var(--ink-3)}
 #viewer{max-width:52rem;margin:0 auto 3rem;padding-bottom:1rem}
 .pdf-page{margin-bottom:1.4rem;background:#fff;
@@ -204,6 +230,15 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .progress .state.pending{color:var(--ink-3)}
 .progress p{margin:0;color:var(--ink-2);font-size:.97rem;line-height:1.5}
 
+/* label/value list, same grid as .progress; used for data sources */
+.ledger{margin:0 0 1.05rem;padding:0;list-style:none;max-width:44rem}
+.ledger li{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:0 1.5rem;
+  padding:.75rem 0;border-top:1px solid var(--rule)}
+.ledger li:first-child{border-top:none}
+@media (max-width:560px){.ledger li{grid-template-columns:1fr;gap:.15rem}}
+.ledger .k{font-family:var(--label);font-size:.7rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);padding-top:.35rem}
+
 /* prose blocks for written page content */
 .prose{max-width:var(--measure)}
 .prose h3{font-family:var(--serif);font-weight:600;font-size:1.12rem;
@@ -211,6 +246,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .prose p{margin:0 0 1.05rem;color:var(--ink-2)}
 .prose ul{margin:0 0 1.05rem;padding-left:1.2rem;color:var(--ink-2)}
 .prose li{margin-bottom:.45rem}
+/* .prose ul outranks .progress/.ledger, so undo the prose list styling */
+.prose .progress,.prose .ledger{padding-left:0}
+.prose .progress li,.prose .ledger li{margin-bottom:0}
 .prose a{color:var(--accent)}
 
 @media print{
